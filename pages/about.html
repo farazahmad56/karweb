@@ -1,0 +1,66 @@
+<div class="childContent container">
+    <div class="page-header">
+        <h1>Company Profile</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Corporate Profile</h3>
+                </div>
+                <!--div class="panel-body">
+                    <p class="lead">
+                        <b>K.A.R Holdings</b> is one of the leading independent and privately owned gas / convenience station operators in Western Canada. Throughout its distinguished history since 2003, K.A.R Holdings has maintained its status as progressive, innovative and desirable operators in public and business community.
+                        The company has grown at an average of 15% per year since its inception and today it employs over 80 enterprising staff with multi-million dollar business investments in Yukon, Manitoba, Saskatchewan, Alberta, and British Columbia.&nbsp;
+                        <a href="" ng-click="isCollapsed = !isCollapsed">more &raquo;</a>
+                        <br/>
+                    </p>
+                    <div uib-collapse="isCollapsed">
+                        <div>
+                            <p class="lead">
+                                Year 2014 was the best year for the company since 2003. This year the company acquired additional owned and leased sites and also improved its revenue. The company also did improvements to some of the existing sites.
+                                Today, K.A.R Holdings is well positioned in Alberta to play its role in the economic development of the province and to service unique customer needs. 
+                                The company's cross functional capabilities are effectively combined with years of business experience.
+                                In conjunction with business success, the company is proud of its public service stewardship and evolutionary thinking. The company realized long ago that, established relationships, positive corporate culture, exceptional service to customers are essential to its success. The company recognize this as a major responsibility 
+                                and embrace the opportunity to improve its diverse business portfolio and customer-focused businesses.
+                                The company plans to grow its presence at locations that fits in its model. The company has grown at an average of 15% per year and future growth will continue at approximately the same percentage by adding more sites to its portfolio. With ever growing economy and increasing fuel demand, gas / convenience retail sector expect to grow with steady and solid pace.
+                                Rashid Aziz, President is with the company since 2007 and under his leadership, company has achieved targets in every field. 
+                                During his leadership, the company has won several  awards in the field of leadership, continuous improvement and best customer service.
+                            </p>
+                        </div>
+                    </div>
+                </div-->
+                <div class="panel-body">
+                    <p class="lead" ng-bind-html="profileText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">KAR Team</h3>
+        </div>
+        <div class="panel-body">
+            <div ng-repeat="detail in data">
+                <h2>{{detail.TITLE}}</h2>
+                <div class="row">
+                    <div ng-repeat="profile in detail.profiles" >
+                        <div class="clearfix" ng-if="$index % 3 == 0"></div>
+                        <div class="col-md-4 ">
+                            <div class="thumbnail" style="background-color: #F7F7F7 !important">
+                                <img ng-if="profile.PROFILE_PIC != ''"  class="img-rounded profilePic" ng-src="http://karholdings.ca/profileAttachments/{{profile.WEB_PROFILE_ID}}/{{profile.PROFILE_PIC}}"  alt="{{profile.PERSON_NME}}" >
+                                <img ng-if="profile.PROFILE_PIC == ''"  class="img-rounded" src="images/dummy.jpg"  style="height: 200px; width: 242px; ">
+                                <div class="caption">
+                                    <h4 class="text-center">{{profile.PERSON_NME}}</h4>
+                                    <p class="text-center"><a href="#" class="btn btn-default" role="button">Profile &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,65 @@
+<div class="childContent container">
+    <div class="page-header">
+        <h1>Our Network</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="height: 430px;">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+                <ui-gmap-window show="map.window.show" coords="map.window.model" options="map.window.options" closeclick="map.window.closeClick()">
+
+                    <div>{{dialogTitle}}</div>
+
+                </ui-gmap-window>
+                <ui-gmap-markers models="markers" coords="'self'" icon="'icon'" options="'options'" events="'events'">
+                </ui-gmap-markers>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sites</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="site in sites" >
+                    <div class="clearfix" ng-if="$index % 3 == 0"></div>
+                    <div class="col-md-4 ">
+                        <div class="thumbnail siteThumbnail">
+                            <img ng-if="site.FILE_NME != ''" class="img-circle" alt="{{site.SITE_NME}}" ng-src="http://karholdings.ca/siteAttachments/{{site.SITE_ID}}/{{site.FILE_NME}}" style="width: 160px;height: 160px;">
+                            <img ng-if="site.FILE_NME == ''" class="img-circle" alt="{{site.SITE_NME}}"  src="images/VIKING.jpg" style="width: 160px;height: 160px;"  >
+                            <div class="caption">
+                                <a href="#/network">
+                                    <h4 class="text-center text-muted">{{site.SITE_NME}}</h4>
+                                </a>
+                                <p ng-if="site.SITE_ADDRESS != ''" class="text-center text-info"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{site.SITE_ADDRESS}}</p>
+                                <p ng-if="site.SITE_ADDRESS == ''" class="text-center text-info">&nbsp;</p>
+
+                                <p ng-if="site.PHONE_NBR != ''" class="text-center text-info"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{site.PHONE_NBR}}</p>
+                                <p ng-if="site.PHONE_NBR == ''" class="text-center text-info">&nbsp;</p>
+                                <!--p class="text-center "><a href="#" class="btn btn-primary btn-small" role="button">Read more &raquo;</a></p-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--div class="list-group">
+        <a href="#" ng-class="applyColor($index)" ng-repeat="site in sites">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <img class="media-object" src="images/fuel_station.jpg" alt="..." style="width: 80px;height: 80px;">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{site.SITE_NME}}</h4>
+                    {{site.SITE_NME}}
+                </div>
+            </div>
+        </a>
+    </div-->
+</div>
+
