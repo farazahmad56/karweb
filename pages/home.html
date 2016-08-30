@@ -1,95 +1,90 @@
-<div ng-controller="CarouselDemoCtrl">
-    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-        <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-            <img ng-src="{{slide.image}}" style="margin:auto;">
+<div ng-controller="CarouselCtrl">
+    <uib-carousel interval="5000" no-wrap="false" active="0">
+        <uib-slide ng-repeat="slide in slides track by $index" index="$index" >
+            <img ng-src="{{ slide.image}}" style="margin:auto;">
             <div class="carousel-caption">
                 <p>{{slide.text}}</p>
             </div>
         </uib-slide>
     </uib-carousel>
 </div>
-<div class="jumbotron" ng-controller="HomeController">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
-                <h1 >Welcome to KAR Holdings.</h1>
-                <blockquote>
-                    <p class="text-primary">
-                        "K.A.R Holdings is one of the leading independent  gas / convenience station operators in Western Canada."
-                    </p>
-                    <!--div typewrite="" initial-delay="1s" type-delay="100" start="title"  text="['GAS Station Operators','Convenience Station Operators','Constrtuction of Gas Station','C-Store Operators']" 
-                         class=" text-primaryng-isolate-scope "> We are best in..
-                        <span class="blink">|</span></div-->
-
-                    <footer class='text-right'><a href="#/about" >More</a></footer>
-                </blockquote>
+<div ng-controller="HomeController">
+    <div class="jumbotron" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 text-center">
+                    <h1 >Welcome to KAR Holdings.</h1>
+                    <blockquote>
+                        <p class="text-primary">
+                            "K.A.R Holdings is one of the leading independent  gas / convenience station operators in Western Canada."
+                        </p>
+                        <footer class='text-right'><a href="#/about" >More</a></footer>
+                    </blockquote>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container marketing">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Services</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-4 col-md-12">
-                    <div class="thumbnail fontThumbnail">
-                        <img src="images/construction.jpg" class="img-rounded" alt="Construction"  style="max-height: 197px;">
-                        <div class="caption">
-                            <h2>Gas Station Construction</h2>
-                            
-                            <p><a class="btn btn-default" href="#/construction" role="button">View details &raquo;</a></p>
+    <div class="container marketing" >
+        <div class="panel panel-primary " >
+            <div class="panel-heading">
+                <h3 class="panel-title">Services</h3>
+            </div>
+            <div class="panel-body">
+                <div in-view="applyServiceAnimation($inview)" ng-class="servicesCls">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="thumbnail fontThumbnail" >
+                            <img src="images/VIKING.jpg" class="img-rounded" alt="Gas Convenience Station"  style="max-height: 197px;">
+                            <div class="caption">
+                                <h2>Gas Convenience Station</h2>
+                                <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="thumbnail fontThumbnail">
+                            <img src="images/cStore_1.JPG" class="img-rounded" alt="Quick Service Restaurant" style="max-height: 197px;">
+                            <div class="caption">
+                                <h2>Quick Service Restaurant</h2>
 
-                <div class="col-lg-4 col-md-12">
-                    <div class="thumbnail fontThumbnail" >
-                        <img src="images/VIKING.jpg" class="img-rounded" alt="Gas Convenience Station"  style="max-height: 197px;">
-                        <div class="caption">
-                            <h2>Gas Convenience Station</h2>
-                            
-                            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                                <p><a class="btn btn-default" href="#" role="button">Learn more &raquo;</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="thumbnail fontThumbnail">
-                        <img src="images/cStore.jpg" class="img-rounded" alt="Quick Service Restaurant" style="max-height: 197px;">
-                        <div class="caption">
-                            <h2>Quick Service Restaurant</h2>
-                            
-                            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="thumbnail fontThumbnail">
+                            <img src="images/construction.jpg" class="img-rounded" alt="Construction"  style="max-height: 197px;">
+                            <div class="caption">
+                                <h2>Gas Station Construction</h2>
+                                <p><a class="btn btn-default" href="#/construction" role="button">Learn more &raquo;</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container marketing">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">Franchise</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-12 col-md-2 text-center">
-                    <img src="images/pizza73.jpg" alt="Pizza 73" class="img-rounded" style="width:150px;height: 100px;">
-                </div>
-                <div class="col-xs-12 col-md-2 text-center">
-                    <img src="images/esso.jpg" alt="Esso" class="img-rounded" style="width:auto;height: 100px;">
-                </div>
-                <div class="col-xs-12 col-md-2 text-center">
-                    <img src="images/petro_canada.jpg" alt="Petro Canada" class="img-rounded" style="width:auto;height: 100px;">
-                </div>
-                <div class="col-xs-12 col-md-2 text-center">
-                    <img src="images/burger_king.jpg" alt="Burger King" class="img-rounded" style="width:auto;height: 100px;">
-                </div>
-                <div class="col-xs-12 col-md-2 text-center">
-                    <img src="images/pizza_pizza.jpg" alt="Pizza Pizza" class="img-rounded" style="width:auto;height: 100px;">
+    <div  class="container marketing"  >
+        <div class="panel panel-info " >
+            <div class="panel-heading">
+                <h3 class="panel-title">Franchise</h3>
+            </div>
+            <div class="panel-body" >
+                <div in-view="lineInView($inview)" ng-class="clas">
+                    <div class="col-xs-12 col-lg-3 text-center">
+                        <img src="images/Petro-Canada_logo.png" alt="Petro Canada" >
+                    </div>
+                    <!--div class="col-xs-12 col-lg-3 text-center">
+                        <img src="images/Esso_textlogo.png" alt="Esso" >
+                    </div-->
+                    <div class="col-xs-12 col-lg-3 text-center">
+                        <img src="images/Pizza_Pizza_Logo.png" alt="Pizza Pizza" width="175" height="120" style="margin-top: 25px;">
+                    </div>
+                    <div class="col-xs-12 col-lg-3 text-center">
+                        <img src="images/Burger_King_Logo.png" alt="Burger King" >
+                    </div>
+                    <div class="col-xs-12 col-lg-3 text-center" >
+                        <img src="images/pizza73.jpg" alt="Pizza Pizza" width="175" height="100"  style="margin-top: 25px;">
+                    </div>
                 </div>
             </div>
         </div>

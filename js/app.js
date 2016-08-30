@@ -6,4 +6,4 @@
 
 
 var app = angular.module('karWebApp', ['angular-loading-bar', 'ngAnimate', 'ui.bootstrap',
-    'ui.router', 'angularTypewrite', 'uiGmapgoogle-maps']);
+    'ui.router', 'angularTypewrite', 'uiGmapgoogle-maps', 'angular-inview']);

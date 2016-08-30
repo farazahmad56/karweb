@@ -9,7 +9,7 @@ app.factory('webService', ['$http', '$httpParamSerializer', '$filter', function 
             $http.defaults.useXDomain = true;
             var promise = $http({
                 method: 'GET',
-                url: 'http://karholdings.ca/karmobile/web.htm?action=getWebSections'
+                url: 'https://karholdings.ca/karmobile/web.htm?action=getWebSections'
             });
             return promise;
         }
@@ -17,7 +17,7 @@ app.factory('webService', ['$http', '$httpParamSerializer', '$filter', function 
             $http.defaults.useXDomain = true;
             var promise = $http({
                 method: 'GET',
-                url: 'http://karholdings.ca/karmobile/web.htm?action=getProfiles'
+                url: 'https://karholdings.ca/karmobile/web.htm?action=getProfiles'
             });
             return promise;
         }
@@ -25,7 +25,7 @@ app.factory('webService', ['$http', '$httpParamSerializer', '$filter', function 
             $http.defaults.useXDomain = true;
             var promise = $http({
                 method: 'GET',
-                url: 'http://karholdings.ca/karmobile/web.htm?action=getProfileText'
+                url: 'https://karholdings.ca/karmobile/web.htm?action=getProfileText'
             });
             return promise;
         }
@@ -33,7 +33,26 @@ app.factory('webService', ['$http', '$httpParamSerializer', '$filter', function 
             $http.defaults.useXDomain = true;
             var promise = $http({
                 method: 'GET',
-                url: 'http://karholdings.ca/karmobile/web.htm?action=getSites'
+                url: 'https://karholdings.ca/karmobile/web.htm?action=getSites'
+            });
+            return promise;
+        }
+        function getCarousalImages() {
+            $http.defaults.useXDomain = true;
+            var promise = $http({
+                method: 'GET',
+                url: 'https://karholdings.ca/karmobile/web.htm?action=getCarousalAttachments'
+            });
+            return promise;
+        }
+        function sendEmail(senderName, email, message) {
+            $http.defaults.useXDomain = true;
+            var data = {senderName: senderName, email: email, message: message};
+            var promise = $http({
+                method: 'POST',
+                url: 'https://karholdings.ca/karmobile/web.htm?action=sendContactEmail',
+                data: $httpParamSerializer(data),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
             return promise;
         }
@@ -41,7 +60,9 @@ app.factory('webService', ['$http', '$httpParamSerializer', '$filter', function 
             getWebSections: getWebSections,
             getProfiles: getProfiles,
             getProfileText: getProfileText,
-            getSites: getSites
+            getSites: getSites,
+            getCarousalImages: getCarousalImages,
+            sendEmail: sendEmail
         };
     }]);
 

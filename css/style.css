@@ -140,7 +140,7 @@ body { padding-bottom: 40px;
     height: 150px !important; width: 170px !important;
 }
 .fontThumbnail{
-    height: 430px !important;
+    height: 400px !important;
 }
 .siteThumbnail{
     height: 300px !important;
@@ -150,4 +150,7 @@ body { padding-bottom: 40px;
 }
 .odd{
     background-color: #E3E3E3 !important;
+}
+.hidden {
+    visibility: hidden;
 }

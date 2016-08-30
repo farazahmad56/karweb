@@ -31,7 +31,7 @@
                     </div>
                 </div-->
                 <div class="panel-body">
-                    <p class="lead" ng-bind-html="profileText"></p>
+                    <p ng-class="clas" ng-bind-html="profileText"></p>
                 </div>
             </div>
         </div>
@@ -48,8 +48,8 @@
                     <div ng-repeat="profile in detail.profiles" >
                         <div class="clearfix" ng-if="$index % 3 == 0"></div>
                         <div class="col-md-4 ">
-                            <div class="thumbnail" style="background-color: #F7F7F7 !important">
-                                <img ng-if="profile.PROFILE_PIC != ''"  class="img-rounded profilePic" ng-src="http://karholdings.ca/profileAttachments/{{profile.WEB_PROFILE_ID}}/{{profile.PROFILE_PIC}}"  alt="{{profile.PERSON_NME}}" >
+                            <div class="thumbnail animated" style="background-color: #F7F7F7 !important">
+                                <img ng-if="profile.PROFILE_PIC != ''"  class="img-rounded profilePic" ng-src="https://karholdings.ca/profileAttachments/{{profile.WEB_PROFILE_ID}}/{{profile.PROFILE_PIC}}"  alt="{{profile.PERSON_NME}}" >
                                 <img ng-if="profile.PROFILE_PIC == ''"  class="img-rounded" src="images/dummy.jpg"  style="height: 200px; width: 242px; ">
                                 <div class="caption">
                                     <h4 class="text-center">{{profile.PERSON_NME}}</h4>

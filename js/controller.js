@@ -3,29 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-app.controller('CarouselDemoCtrl', function ($scope) {
-    $scope.myInterval = 5000;
-    $scope.noWrapSlides = false;
-    $scope.active = 0;
-    var slides = $scope.slides = [];
-    var currIndex = 0;
-    slides.push({
-        image: 'images/cStore.jpg',
-        text: 'C-Store',
-        id: currIndex++
-    });
-    slides.push({
-        image: 'images/construction.jpg',
-        text: 'Gas Station Construction',
-        id: currIndex++
-    });
-    slides.push({
-        image: 'images/VIKING.jpg',
-        text: 'Gas Station Operation',
-        id: currIndex++
-    });
-});
+app.controller('CarouselCtrl', ['$scope', 'webService',
+    function ($scope, webService) {
+        $scope.myInterval = 5000;
+        $scope.noWrapSlides = false;
+        $scope.active = 1;
+        //$scope.slides = [];
+        var currIndex = 0;
+//        slides.push({
+//            image: 'images/cStore.jpg',
+//            text: 'C-Store',
+//            id: currIndex++
+//        });
+//        slides.push({
+//            image: 'images/construction.jpg',
+//            text: 'Gas Station Construction',
+//            id: currIndex++
+//        });
+//        slides.push({
+//            image: 'images/VIKING.jpg',
+//            text: 'Gas Station Operation',
+//            id: currIndex++
+//        });
+        $scope.slides = [];
+        webService.getCarousalImages().then(function (res) {
+            for (var i = 0; i < res.data.length; i++) {
+                $scope.slides.push({
+                    image: 'https://karholdings.ca/carousalImages/' + res.data[i].FILE_NME,
+                    text: res.data[i].FILE_DESC,
+                    id: res.data[i].CAROUSAL_ATTACHMENT_ID,
+                    active: 1
+                });
+            }
+        });
+    }]);
 app.controller('topMenuController', function ($scope) {
     $scope.activeClass = 'Home';
     $scope.setActiveClass = function (link) {
@@ -33,7 +44,25 @@ app.controller('topMenuController', function ($scope) {
     };
 });
 app.controller('HomeController', function ($scope) {
+    
     $scope.text = "Home";
+    $scope.clas = 'row hide';
+    $scope.lineInView = function ($el) {
+        if ($el) {
+            $scope.clas = 'row animated fadeInDown';
+        } else {
+            $scope.clas = 'row hide';
+        }
+    };
+
+    $scope.servicesCls = 'row ';
+    $scope.applyServiceAnimation = function ($el) {
+        if ($el) {
+            $scope.servicesCls = 'row animated fadeIn';
+        } else {
+            $scope.servicesCls = 'row hide';
+        }
+    };
 });
 
 
@@ -47,6 +76,7 @@ app.controller('ProfileController', ['$scope', '$location', 'webService', '$sce'
         };
         webService.getProfileText().then(function (res) {
             $scope.profileText = $sce.trustAsHtml(res.data.PROFILE_TXT);
+            $scope.clas = 'lead animated fadeIn';
         });
         $scope.isCollapsed = true;
         webService.getWebSections().then(function (res) {
@@ -140,8 +170,8 @@ app.controller('NetworkController', ['$scope', '$location', 'webService', 'uiGma
         };
     }]);
 
-app.controller('ContactController', ['$scope', 'uiGmapGoogleMapApi',
-    function ($scope, GoogleMapApi) {
+app.controller('ContactController', ['$scope', 'uiGmapGoogleMapApi', 'webService',
+    function ($scope, GoogleMapApi, webService) {
         $scope.map = {center: {latitude: 53.4303002, longitude: -113.4736503}, zoom: 16};
         $scope.marker = {};
         GoogleMapApi.then(function (maps) {
@@ -171,7 +201,22 @@ app.controller('ContactController', ['$scope', 'uiGmapGoogleMapApi',
 
             maps.visualRefresh = true;
         });
-
-
-
+        $scope.contact = {senderName: '', senderEmail: '', senderText: ''};
+        $scope.alert = {type: 'success', msg: 'your Message sent successfully.', show: false};
+        $scope.closeAlert = function () {
+            $scope.alert = {type: 'success', msg: 'your Message sent successfully.', show: false};
+        };
+        $scope.sentContactEmail = function (contact) {
+            if (contact.senderName !== '' && contact.senderEmail !== '' && contact.senderText !== '') {
+                webService.sendEmail(contact.senderName, contact.senderEmail, contact.senderText).then(function (res) {
+                    if (res.data.msg === 'sent') {
+                        $scope.alert = {type: 'success', msg: 'your Message sent successfully.', show: true};
+                    } else {
+                        $scope.alert = {type: 'danger', msg: 'Your Message did not sent. Please check your email address and try again.', show: true};
+                    }
+                });
+            } else {
+                $scope.alert = {type: 'warn', msg: 'Please fill all fields and than try again.', show: true};
+            }
+        };
     }]);
